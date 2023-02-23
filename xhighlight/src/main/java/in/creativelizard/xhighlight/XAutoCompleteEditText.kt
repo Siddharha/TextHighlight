@@ -24,6 +24,9 @@ class XAutoCompleteEditText : androidx.appcompat.widget.AppCompatAutoCompleteTex
     private var tagColor2: Int = ContextCompat.getColor(context, R.color.colorBlue)
     private var tagColor3: Int = ContextCompat.getColor(context, R.color.colorBlue)
     var userList:List<User>? = null
+    val strArray =
+        text.toString().split("((?<= )|(?= )|\\r?\\n)".toRegex())
+    var customStr = ""
     private lateinit var spanable: Spannable
 
     constructor(context: Context) : super(context) {
@@ -127,9 +130,7 @@ class XAutoCompleteEditText : androidx.appcompat.widget.AppCompatAutoCompleteTex
     ) {
         try {
             val fullStr = charSequence.toString()
-            val strArray =
-                text.toString().split("((?<= )|(?= )|\\r?\\n)".toRegex())
-            var customStr = ""
+
             for (str in strArray) {
                 if (str.length > 1 && str.startsWith("#") && str[1].isLetterOrDigit()) {
                     changeTheColorHash(str, fullStr.indexOf(str[0], customStr.length, false))
