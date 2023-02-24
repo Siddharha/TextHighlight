@@ -24,7 +24,7 @@ class XAutoCompleteEditText : androidx.appcompat.widget.AppCompatAutoCompleteTex
     private var tagColor2: Int = ContextCompat.getColor(context, R.color.colorBlue)
     private var tagColor3: Int = ContextCompat.getColor(context, R.color.colorBlue)
     var userList:List<User>? = null
-    private lateinit var spanable: Spannable
+     var spanable: Spannable? = null
     var customStr = ""
     constructor(context: Context) : super(context) {
         init(attrs = null)
@@ -51,7 +51,7 @@ class XAutoCompleteEditText : androidx.appcompat.widget.AppCompatAutoCompleteTex
     }
 
     private fun init(attrs: AttributeSet?) {
-        spanable = this.text!!
+        spanable = this.text
         val a: TypedArray = context.obtainStyledAttributes(attrs, R.styleable.XAutoCompleteEditText)
         tagColor1 = a.getColor(R.styleable.XAutoCompleteEditText_autoHashTagColor, tagColor1)
         tagColor2 = a.getColor(R.styleable.XAutoCompleteEditText_autoUserTagColor, tagColor2)
@@ -61,7 +61,7 @@ class XAutoCompleteEditText : androidx.appcompat.widget.AppCompatAutoCompleteTex
     }
 
     private fun changeTheColorHash(s: String, start: Int) {
-        spanable.setSpan(
+        spanable?.setSpan(
             ForegroundColorSpan(tagColor1),
             start,
             start + s.length,
@@ -69,7 +69,7 @@ class XAutoCompleteEditText : androidx.appcompat.widget.AppCompatAutoCompleteTex
         )
     }
     private fun changeTheColorLink(s: String, start: Int) {
-        spanable.setSpan(
+        spanable?.setSpan(
             ForegroundColorSpan(tagColor3),
             start,
             start + s.length,
@@ -80,13 +80,13 @@ class XAutoCompleteEditText : androidx.appcompat.widget.AppCompatAutoCompleteTex
     private fun changeTheColorAt(s: String, start: Int) {
 
             spanable
-                .setSpan(
+                ?.setSpan(
                     ForegroundColorSpan(tagColor2),
                     start,
                     start + s.length,
                     Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
                 )
-            spanable.setSpan(
+            spanable?.setSpan(
                 StyleSpan(android.graphics.Typeface.BOLD),
                 start,
                 start + s.length,
@@ -99,7 +99,7 @@ class XAutoCompleteEditText : androidx.appcompat.widget.AppCompatAutoCompleteTex
     private fun changeTheColorAtNoListMatch(s: String, start: Int) {
 
         spanable
-            .setSpan(
+            ?.setSpan(
                 ForegroundColorSpan(defaultColor),
                 start,
                 start + s.length,
@@ -111,7 +111,7 @@ class XAutoCompleteEditText : androidx.appcompat.widget.AppCompatAutoCompleteTex
 
     @SuppressLint("ResourceType")
     private fun changeTheColor2(s: String, start: Int) {
-        spanable.setSpan(
+        spanable?.setSpan(
             ForegroundColorSpan(defaultColor),
             start,
             start + s.length,
