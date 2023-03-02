@@ -1,17 +1,19 @@
 package `in`.creativelizard.texthighlight
 
-import `in`.creativelizard.xhighlight.User
-import `in`.creativelizard.xhighlight.XAutoCompleteEditText
-import `in`.creativelizard.xhighlight.XEditText
-import `in`.creativelizard.xhighlight.XTextView
+import `in`.creativelizard.xhighlight.*
 import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.Button
+import android.widget.EditText
+import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.widget.LinearLayoutCompat
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +39,17 @@ class MainActivity : AppCompatActivity() {
         findViewById<XEditText>(R.id.etText).apply {
 
             userList = listOf( User(id = 0, name = "sid"),  User(id = 1, name = "rro"))
+            //setUserTagColor(Color.BLUE)
+        }
+        val rootCont = findViewById<LinearLayoutCompat>(R.id.llContainer)
+
+        findViewById<EditText>(R.id.etText2).apply {
+
+           // userList = listOf( User(id = 0, name = "sid"),  User(id = 1, name = "rro"))
+
+            attachXHighlight(this@MainActivity,rootCont){
+                it.setTagColor(Color.RED)
+            }
             //setUserTagColor(Color.BLUE)
         }
 

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/llContainer"
     tools:context=".MainActivity">
 
     <in.creativelizard.xhighlight.XTextView
@@ -23,6 +24,14 @@
         app:hashTagColor="@color/colorBlue"
         app:userTagColor="@color/colorBlue"
         app:linkColor="@android:color/holo_red_light"
+        android:minWidth="200dp"
+        android:minHeight="48dp" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etText2"
+        android:textColor="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:minWidth="200dp"
         android:minHeight="48dp" />
 
