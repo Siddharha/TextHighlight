@@ -54,6 +54,7 @@ class XEditText : AppCompatEditText, TextWatcher {
         val a: TypedArray = context.obtainStyledAttributes(attrs, R.styleable.XEditText)
         tagColor1 = a.getColor(R.styleable.XEditText_hashTagColor, tagColor1)
         tagColor2 = a.getColor(R.styleable.XEditText_userTagColor, tagColor2)
+        tagColor3 = a.getColor(R.styleable.XEditText_linkColor, tagColor3)
         defaultColor = a.getColor(R.styleable.XEditText_android_textColor, defaultColor)
         a.recycle()
         addTextChangedListener(this)

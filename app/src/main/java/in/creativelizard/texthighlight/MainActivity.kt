@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         findViewById<XEditText>(R.id.etText).apply {
 
             userList = listOf( User(id = 0, name = "sid"),  User(id = 1, name = "rro"))
-            setUserTagColor(Color.BLUE)
+            //setUserTagColor(Color.BLUE)
         }
 
 

@@ -17,8 +17,12 @@
 
     <in.creativelizard.xhighlight.XEditText
         android:id="@+id/etText"
+        android:textColor="@color/black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:hashTagColor="@color/colorBlue"
+        app:userTagColor="@color/colorBlue"
+        app:linkColor="@android:color/holo_red_light"
         android:minWidth="200dp"
         android:minHeight="48dp" />
 
