@@ -3,10 +3,8 @@ package `in`.creativelizard.xhighlight
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.TypedArray
-import android.text.Editable
-import android.text.Spannable
-import android.text.Spanned
-import android.text.TextWatcher
+import android.text.*
+import android.text.method.LinkMovementMethod
 import android.text.style.ForegroundColorSpan
 import android.text.style.RelativeSizeSpan
 import android.text.style.StyleSpan
@@ -16,6 +14,9 @@ import android.widget.AutoCompleteTextView
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
 import androidx.core.text.clearSpans
+import kotlinx.coroutines.delay
+import java.util.regex.Matcher
+import java.util.regex.Pattern
 
 class XAutoCompleteEditText : androidx.appcompat.widget.AppCompatAutoCompleteTextView, TextWatcher {
 
@@ -24,15 +25,15 @@ class XAutoCompleteEditText : androidx.appcompat.widget.AppCompatAutoCompleteTex
     private var tagColor2: Int = ContextCompat.getColor(context, R.color.colorBlue)
     private var tagColor3: Int = ContextCompat.getColor(context, R.color.colorBlue)
     var userList:List<User>? = null
-     var spanable: Spannable? = null
-    var customStr = ""
+    var spanable: Spannable? = null
+
     constructor(context: Context) : super(context) {
         init(attrs = null)
     }
 
     constructor(context: Context, attrs: AttributeSet?) : super(
-        context,
-        attrs
+    context,
+    attrs
     ) {
         init(attrs)
     }
@@ -40,7 +41,7 @@ class XAutoCompleteEditText : androidx.appcompat.widget.AppCompatAutoCompleteTex
     constructor(
         context: Context,
         attrs: AttributeSet?,
-        defStyleAttr: Int
+    defStyleAttr: Int
     ) : super(context, attrs, defStyleAttr) {
         init(attrs)
     }
@@ -55,7 +56,8 @@ class XAutoCompleteEditText : androidx.appcompat.widget.AppCompatAutoCompleteTex
         val a: TypedArray = context.obtainStyledAttributes(attrs, R.styleable.XAutoCompleteEditText)
         tagColor1 = a.getColor(R.styleable.XAutoCompleteEditText_autoHashTagColor, tagColor1)
         tagColor2 = a.getColor(R.styleable.XAutoCompleteEditText_autoUserTagColor, tagColor2)
-        defaultColor = a.getColor(R.styleable.XAutoCompleteEditText_autoLinkColor, defaultColor)
+        tagColor3 = a.getColor(R.styleable.XAutoCompleteEditText_autoLinkColor, defaultColor)
+        defaultColor = a.getColor(R.styleable.XAutoCompleteEditText_android_textColor, defaultColor)
         a.recycle()
         addTextChangedListener(this)
     }
@@ -79,24 +81,25 @@ class XAutoCompleteEditText : androidx.appcompat.widget.AppCompatAutoCompleteTex
 
     private fun changeTheColorAt(s: String, start: Int) {
 
-            spanable
-                ?.setSpan(
-                    ForegroundColorSpan(tagColor2),
-                    start,
-                    start + s.length,
-                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-                )
-            spanable?.setSpan(
-                StyleSpan(android.graphics.Typeface.BOLD),
+        spanable
+            ?.setSpan(
+                ForegroundColorSpan(tagColor2),
                 start,
                 start + s.length,
                 Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
             )
+        spanable?.setSpan(
+            StyleSpan(android.graphics.Typeface.BOLD),
+            start,
+            start + s.length,
+            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
 
 
     }
 
     private fun changeTheColorAtNoListMatch(s: String, start: Int) {
+
 
         spanable
             ?.setSpan(
@@ -105,7 +108,7 @@ class XAutoCompleteEditText : androidx.appcompat.widget.AppCompatAutoCompleteTex
                 start + s.length,
                 Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
             )
-
+        spanable?.removeSpan(StyleSpan(android.graphics.Typeface.BOLD))
 
     }
 
@@ -129,7 +132,7 @@ class XAutoCompleteEditText : androidx.appcompat.widget.AppCompatAutoCompleteTex
             val fullStr = charSequence.toString()
             val strArray =
                 text.toString().split("((?<= )|(?= )|\\r?\\n)".toRegex())
-             customStr = ""
+            var customStr = ""
             for (str in strArray) {
                 if (str.length > 1 && str.startsWith("#") && str[1].isLetterOrDigit()) {
                     changeTheColorHash(str, fullStr.indexOf(str[0], customStr.length, false))
@@ -154,10 +157,7 @@ class XAutoCompleteEditText : androidx.appcompat.widget.AppCompatAutoCompleteTex
                     changeTheColorLink(str, fullStr.indexOf(str[0], customStr.length, false))
                 } else {
                     if (str.trim().isNotEmpty()) {
-                        changeTheColor2(
-                            str,
-                            fullStr.indexOf(str[0], customStr.length, false)
-                        )
+                        changeTheColorAtNoListMatch(str, fullStr.indexOf(str[0], customStr.length, false))
                     }
                 }
                 customStr += str
