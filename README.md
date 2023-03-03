@@ -1,4 +1,7 @@
 # TextHighlight 
+![Language](https://img.shields.io/badge/language-Kotlin-orange.svg)
+![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)
+
 This Library enable text highlight in edittext and textview with #tag, @user tag and link highlight with custom color options.
 
 ## Latest Library 
