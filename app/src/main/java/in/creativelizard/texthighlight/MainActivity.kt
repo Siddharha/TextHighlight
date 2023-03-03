@@ -22,7 +22,10 @@ class MainActivity : AppCompatActivity() {
         findViewById<XTextView>(R.id.tvText).apply {
             //userList = listOf( User(id = 0, name = "sid"),  User(id = 1, name = "rro"))
             text = "sdfdf #ffg.ff dgdsfg. http://www.google.com askjsakdf @sid and @rro and @ddf"
-            setUserTagColor(Color.GREEN)
+            setUserTagColor(Color.BLACK)
+            setTagColor(Color.BLUE)
+            setLinkColor(Color.RED)
+            setTextColor(Color.BLACK)
 
            // setTagColor(Color.RED)
             setOnHashTagClickListener = {

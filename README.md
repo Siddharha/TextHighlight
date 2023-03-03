@@ -9,7 +9,7 @@ This Library enable text highlight in edittext and textview with #tag, @user tag
 
 # Features:
 	
-* Use as ragular EditText or TextView
+* Use as regular EditText or TextView
 * Highlight #tags, @user tags and Website link
 * In EditText and TextView directly provide user list to detect
 * Available color customization options for eatch types of highlighting.
