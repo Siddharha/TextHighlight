@@ -57,7 +57,9 @@ class XTextView : androidx.appcompat.widget.AppCompatTextView {
 
         linkSpans = getLinkSpans(text.toString())
         setLinkSpans(ss, linkSpans)
-        movementMethod = LinkMovementMethod.getInstance()
+        movementMethod = ClickableMovementMethod
+        isClickable = false
+        isLongClickable = false
         super.setText(ss, type)
     }
 

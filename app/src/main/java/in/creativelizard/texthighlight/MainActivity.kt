@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
+import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -19,6 +20,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        findViewById<FrameLayout>(R.id.flCont).setOnClickListener {
+            Toast.makeText(this, "Cell clicked", Toast.LENGTH_SHORT).show()
+        }
         findViewById<XTextView>(R.id.tvText).apply {
             //userList = listOf( User(id = 0, name = "sid"),  User(id = 1, name = "rro"))
             text = "sdfdf #ffg.ff dgdsfg. http://www.google.com askjsakdf @sid and @rro and @ddf"
