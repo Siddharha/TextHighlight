@@ -21,11 +21,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        findViewById<FrameLayout>(R.id.flCont).setOnClickListener {
+        findViewById<LinearLayoutCompat>(R.id.flCont).setOnClickListener {
             Toast.makeText(this, "Cell clicked", Toast.LENGTH_SHORT).show()
         }
         findViewById<XTextView>(R.id.tvText).apply {
-            //userList = listOf( User(id = 0, name = "sid"),  User(id = 1, name = "rro"))
+            userList = listOf( User(id = 1, name = "rro"))
             text = "sdfdf #ffg.ff dgdsfg. http://www.google.com askjsakdf @sid and @rro and @ddf"
             setUserTagColor(Color.BLACK)
             setTagColor(Color.BLUE)
@@ -36,13 +36,33 @@ class MainActivity : AppCompatActivity() {
             setOnHashTagClickListener = {
                 Log.e("sss","clicked a hash tag")
             }
-            setOnUserTagClickListener = {userName,id->
-                Log.e("sss","clicked a user tag with id - $id")
+            setOnUserTagClickListener = {user->
+                Log.e("sss","clicked a user tag with id - ${user.id}")
             }
             setOnLinkTagClickListener = {
                 Log.e("sss","clicked a link")
             }
     }
+
+        findViewById<XTextView>(R.id.tvText2).apply {
+            userList = listOf( User(id = 0, name = "sid"),  User(id = 1, name = "rro"))
+            text = "this is @sid"
+            setUserTagColor(Color.BLACK)
+            setTagColor(Color.BLUE)
+            setLinkColor(Color.RED)
+            setTextColor(Color.BLACK)
+
+            // setTagColor(Color.RED)
+            setOnHashTagClickListener = {
+                Log.e("sss","clicked a hash tag")
+            }
+            setOnUserTagClickListener = {user->
+                Log.e("sss","clicked a user tag with id - ${user.id}")
+            }
+            setOnLinkTagClickListener = {
+                Log.e("sss","clicked a link")
+            }
+        }
 
         findViewById<XEditText>(R.id.etText).apply {
 

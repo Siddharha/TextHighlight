@@ -8,8 +8,9 @@
     android:id="@+id/llContainer"
     tools:context=".MainActivity">
 
-    <FrameLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/flCont"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <in.creativelizard.xhighlight.XTextView
@@ -20,7 +21,15 @@
             android:layout_height="wrap_content"
             android:minWidth="200dp"
             android:minHeight="32dp" />
-    </FrameLayout>
+        <in.creativelizard.xhighlight.XTextView
+            android:id="@+id/tvText2"
+            android:layout_margin="10dp"
+            android:text="This is Test"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minWidth="200dp"
+            android:minHeight="32dp" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 
     <in.creativelizard.xhighlight.XEditText

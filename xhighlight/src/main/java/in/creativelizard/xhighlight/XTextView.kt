@@ -14,7 +14,7 @@ import java.util.regex.Pattern
 class XTextView : androidx.appcompat.widget.AppCompatTextView {
 
       var setOnHashTagClickListener: ((String) -> Unit)? = null
-     var setOnUserTagClickListener: ((String,Int) -> Unit)? = null
+     var setOnUserTagClickListener: ((User) -> Unit)? = null
      var setOnLinkTagClickListener: ((String) -> Unit)? = null
     var userList:List<User>? = null
     var clickIntent: Intent = Intent()
@@ -146,21 +146,36 @@ class XTextView : androidx.appcompat.widget.AppCompatTextView {
                 userList.also {
 
 
-                    if(userList.mapIndexed {i,user -> user.name }.contains(theWord)){
-                        commentsContent.setSpan(
+//                    if(userList.mapIndexed {i,user -> user.name }.contains(theWord)){
+//
+//                        commentsContent.setSpan(
+//                            HighlightSpan(HighlightSpanType.USER_TAG,tagColor2){ userName->
+//                                Log.e("userId","id = $i")
+//                                //setOnUserTagClickListener?.invoke(userName,userList[i].id)
+//                            },
+//                            hashTagStart,
+//                            hashTagEnd, 0
+//                        )
+//                    }
+
+                    userList.forEachIndexed { index, user ->
+                        if(user.name.contains(theWord)){
+                            commentsContent.setSpan(
                             HighlightSpan(HighlightSpanType.USER_TAG,tagColor2){ userName->
-                                setOnUserTagClickListener?.invoke(userName,userList[i].id)
+                                //Log.e("userId","id = ${user.id}")
+                                setOnUserTagClickListener?.invoke(user)
                             },
                             hashTagStart,
                             hashTagEnd, 0
                         )
+                        }
                     }
 
                 }
             }else{
                 commentsContent.setSpan(
                     HighlightSpan(HighlightSpanType.USER_TAG,tagColor2){ userName->
-                        setOnUserTagClickListener?.invoke(userName,-1)
+                        setOnUserTagClickListener?.invoke(User(-1,userName))
                     },
                     hashTagStart,
                     hashTagEnd, 0
