@@ -87,7 +87,9 @@ class XTextView : androidx.appcompat.widget.AppCompatTextView {
     }
     private fun getUserTagSpans(body: String, prefix: Char): ArrayList<IntArray> {
         val spans = ArrayList<IntArray>()
-        val pattern: Pattern = Pattern.compile("$prefix\\w+")
+        val swiftTagRegex = """$prefix([^:\s]+)\w*""".toRegex()
+       // var regx = swiftTagRegex.findAll(body)
+        val pattern: Pattern = swiftTagRegex.toPattern()//Pattern.compile("""@\[%user%](\w+)\((\w+)\)""")
         val matcher: Matcher = pattern.matcher(body)
         // Check all occurrences
         while (matcher.find()) {

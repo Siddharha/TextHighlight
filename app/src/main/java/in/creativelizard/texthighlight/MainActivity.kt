@@ -25,8 +25,8 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Cell clicked", Toast.LENGTH_SHORT).show()
         }
         findViewById<XTextView>(R.id.tvText).apply {
-            userList = listOf( User(id = 1, name = "rro"))
-            text = "sdfdf #ffg.ff dgdsfg. http://www.google.com askjsakdf @sid and @rro and @ddf"
+            userList = listOf( User(id = 1, name = "rro.ro"))
+            text = "sdfdf #ffg.ff dgdsfg. http://www.google.com askjsakdf @sid and @rro.ro and @ddf"
             setUserTagColor(Color.BLACK)
             setTagColor(Color.BLUE)
             setLinkColor(Color.RED)
